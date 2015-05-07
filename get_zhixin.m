@@ -1,11 +1,10 @@
 function [Ox,Oy] =get_zhixin(I)
 %求图像的质心的高度
 %I为读取图像文件得到的(二值)矩阵
-%I = im2I(I, graythresh(I));%转换成2进制图像
-g1 = 0
-g2 = 0
-g3 = 0
-g4 = 0
+g1 = 0;
+g2 = 0;
+g3 = 0;
+g4 = 0;
 [m,n]=size(I);
 for i=1:m
     for j=1:n

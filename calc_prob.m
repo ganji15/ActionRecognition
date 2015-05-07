@@ -22,10 +22,15 @@ end
 
 end;
 
-[r, ~] = size(action_emis);
-for m = 1 : r;
- x(m) = calc_prob2(seq, action_emis(m, :));
- fprintf('action%d prob %f\n', m, x(m));
+[r, p, ~] = size(action_emis);
+for m = 1 : r
+    x(m) = 0;
+    for q = 1 :p
+        x(m) =  x(m) + calc_prob2(seq, action_emis(m, q, :));
+    end
+    fprintf('action%d prob %f\n', m, x(m));
 end
+
+ disp('----------------------------------------------\n');
 
 end

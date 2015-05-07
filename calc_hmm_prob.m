@@ -4,9 +4,11 @@ trans = [1];
 emis = zeros(1, 11) + 1/11;
 
 for i = 1 : nargin
-    [~, estE] = hmmtrain(varargin{i}, trans, emis);
-    x(i, :) = estE;
-    %disp(estE);
+   [m, ~] = size(varargin{i});
+   for j = 1 : m 
+        [~, estE] = hmmtrain(varargin{i}(j, :), trans, emis);
+        x(i, j, :) = estE;
+   end
 end
 
 end

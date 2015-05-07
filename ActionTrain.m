@@ -1,8 +1,8 @@
  clear,clc;
 
- video = read_avi_data('D:/Database/run/denis_run.avi');
+ video = read_avi_data('D:/Database/run/daria_run.avi');
  video2 = read_avi_data('D:/Database/walk/denis_walk.avi');
- video3 = read_avi_data('D:/Database/jump/denis_jump.avi');
+ video3 = read_avi_data('D:/Database/jump/daria_jump.avi');
  video4 = read_avi_data('D:/Database/bend/daria_bend.avi');
  
  x1 = tracking(video);
