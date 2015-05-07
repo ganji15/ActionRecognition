@@ -7,9 +7,16 @@ prob = 0;
 % number of emits
 n = size(emis);
 for i = 1:length(seq2)
+    if (seq2(i) <= 0)
+        seq2(i) = 1;
+    end
+    
     temp_prob = emis(seq2(i));
-    if abs(temp_prob) > 0.01
+    
+    if abs(temp_prob) ~= 0
         prob = prob + log(temp_prob);
+    else
+        prob = prob + log(0.00001);
     end
 end
 

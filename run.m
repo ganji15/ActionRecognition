@@ -2,7 +2,7 @@
 clear,clc;
  disp('input video');
 % 
-test_video_path = 'D:/Database/bend/daria_bend.avi';
+test_video_path = 'D:/Database/jump/eli_jump.avi';
 
  video = read_avi_data('D:/Database/run/denis_run.avi');
  video2 = read_avi_data('D:/Database/walk/denis_walk.avi');

@@ -2,8 +2,19 @@ function R=Result(x)%ÅÐ¶ÏÊä³ö½á¹û
 
 R = 1;
 for i = 2 : length(x)
-    if (x(R) > x(i))
+    if (x(R) < x(i))
         R = i;
+    end
+end
+
+tmp = x(R);
+x(R) = x(1);
+x(1) = tmp;
+
+R2 = 2;
+for i = 3 : length(x)
+    if (x(R2) < x(i))
+        R2 = i;
     end
 end
 
