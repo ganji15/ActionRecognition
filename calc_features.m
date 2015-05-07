@@ -22,10 +22,10 @@ if ischar(video)
 rows=size(pixel,1);%144行数
 cols=size(pixel,2); %180列数
  BG=pixel(:,:,1);%背景
-  X=1:40;%背景平均时需要的帧数
+  X=1:min([40,nFrames]);%背景平均时需要的帧数
   for u=1:rows
       for v=1:cols
-          for t=1:40
+          for t=1:min([40,nFrames])
               X(t)=pixel(u,v,t);                       
           end
           BG(u,v)=median(X); %返回每列的中间值，如是偶数个，则返回中间两个值的平均值 

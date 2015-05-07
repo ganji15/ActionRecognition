@@ -31,21 +31,21 @@ zhixin = zhixin(:, start : stop);
  normal_lw_ratio = normalization(x, 1);
  normal_speed = GetSpeed(zhixin);
  
- wight_lw = 0.8;
- wight_speed_x = 0.1;
- wight_speed_y = 0.1;
+ wight_lw = 0.4;
+ wight_speed_x = 0.3;
+ wight_speed_y = 0.3;
  features = wight_lw * normal_lw_ratio + ...
-            wight_speed_x * normal_speed(1, :).^2 + ...
-            wight_speed_y * normal_speed(2, :).^2 
+            wight_speed_x * normal_speed(1, :) + ...
+            wight_speed_y * normal_speed(2, :) 
 
- %features = normalization(features, 1);
+ features = normalization(features, 1);
  %{
  for i = 1 : length(features)
      features(i) = roundn(featrues, -2);
  end
 %}
             
-features = arrayfun(@(x) int32(roundn(x, -2) * 100), features)
+features = arrayfun(@(x) int32(roundn(x, -1) * 10 + 1), features)
 %close(f3);
 
 end
