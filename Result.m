@@ -1,35 +1,51 @@
 function R=Result(x)%判断输出结果
 
-R = 1;
-for i = 2 : length(x)
-    if (x(R) < x(i))
-        R = i;
+
+    function index = GetMostIndex(max_x)
+        per_train_num = 3;
+        index = 1;
+        for i = 2 : length(max_x)
+            if (max_x(index) < max_x(i))
+                index = i;
+            end
+        end
+        index = floor((index - 1)/per_train_num) + 1;
     end
+
+% 众数法
+%{  
+[m,n] = size(x);
+for j = 1 : n
+    res(j) = GetMostIndex(x(:, j));
 end
 
-tmp = x(R);
-x(R) = x(1);
-x(1) = tmp;
+disp(res);
+R = mode(res);
+%}
 
-R2 = 2;
-for i = 3 : length(x)
-    if (x(R2) < x(i))
-        R2 = i;
-    end
+% 贝叶斯连乘法
+%{  //
+[m,n] = size(x);
+for j = 1 : m
+    res(j) = sum(x(j, :));
 end
+
+R = GetMostIndex(res);
+%}//
 
 switch R
     case 1
-       msgbox('跑步');
+       disp('跑步');
     case 2
-        msgbox('行走');
+        disp('行走');
     case 3
-        msgbox('上下跳');
+        disp('上下跳');
     case 4
-        msgbox('弯腰');
+        disp('弯腰');
     otherwise
-        msgbox('什么情况');     
+        disp('什么情况');     
 end
+
 
 end
 

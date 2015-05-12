@@ -1,5 +1,5 @@
 clear,clc;
-test_dir = 'D:/Database/bend/';
+test_dir = 'D:/Database/run/';
 
 path = test_dir;
 fileExt = '*.avi';

@@ -5,13 +5,16 @@ function x = calc_prob( seq, action_emis)
 function prob = calc_prob2(seq2, emis )
 prob = 0;
 % number of emits
-n = size(emis);
+[~,~,n] = size(emis);
 for i = 1:length(seq2)
+    index = seq2(i);
     if (seq2(i) <= 0)
-        seq2(i) = 1;
+        index = 1;
+    elseif (seq2(i) > n)
+        index = n;
     end
     
-    temp_prob = emis(seq2(i));
+    temp_prob = emis(index);
     
     if abs(temp_prob) ~= 0
         prob = prob + log(temp_prob);
@@ -24,13 +27,11 @@ end;
 
 [r, p, ~] = size(action_emis);
 for m = 1 : r
-    x(m) = 0;
     for q = 1 :p
-        x(m) =  x(m) + calc_prob2(seq, action_emis(m, q, :));
+        x(m, q) =  calc_prob2(seq(q, :), action_emis(m, q, :));
     end
-    fprintf('action%d prob %f\n', m, x(m));
 end
 
- disp('----------------------------------------------\n');
+ disp('----------------------------------------------');
 
 end

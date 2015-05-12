@@ -1,6 +1,10 @@
-function [Ox,Oy] =get_zhixin(I)
+function [Ox,Oy] =get_zhixin(I, display)
 %求图像的质心的高度
 %I为读取图像文件得到的(二值)矩阵
+if nargin < 2
+    display = 0;
+end
+
 g1 = 0;
 g2 = 0;
 g3 = 0;
@@ -16,8 +20,11 @@ for i=1:m
 end
 Oy=g1/g2;          %手背区域的质心
 Ox=g3/g4;
-figure(2);imshow(I);
 
-%%标记质心点
-hold on
-plot(Ox, Oy, 'r*')
+if display
+    figure(2);imshow(I);
+
+    %%标记质心点
+    hold on
+    plot(Ox, Oy, 'r*')
+end
