@@ -1,4 +1,4 @@
-function [hw_ratio, zhixin, area] = calc_features(video, display)
+function [hw_ratio, zhixin, area] = calc_features(video, display)%特征提取函数，提取出（长宽比，质心，面积）
 
 if nargin < 2
     display = 0;
@@ -42,9 +42,9 @@ cols=size(pixel,2); %180列数
     f1 = figure(1);
     set(f1, 'Position', [200 100 400 400]);
     imshow(BG);%显示背景图片
-     f2 = figure(2);
-     set(f2, 'Position', [200 600 400 400]);
     
+    f2 = figure(2);
+    set(f2, 'Position', [200 600 400 400]);
  end
  
 nrames=f;
@@ -59,9 +59,9 @@ for l = 2:nrames
  bw3(:,:,l)=imclose(bw2(:,:,l),se);%闭运算，所需二值图像
  
  if display
-     imshow(bw3(:,:,l));%显示二值化图片
+     imshow(pixel(:,:,l));
      figure(2);
-     hold on%保持当前图形界面
+     hold on
  end
  
  cou=1;%表示第一次遇到符合条件的行数
@@ -102,12 +102,12 @@ with=lftln+widt;%标定点的位置、宽度
 heth=tpln+heit;%标定点的位置、高度
 
  x(l-1)=heig/widh;%得到长宽比
- [zhixin(1, l-1), zhixin(2, l-1)] = get_zhixin(bw3(:,:,l), display);
+ [zhixin(1, l-1), zhixin(2, l-1)] = get_zhixin(bw3(:,:,l), display);%获取每一帧前景的质心
  area(l - 1) = get_area(bw3(:,:,l));
  
  if display
      rectangle('Position',[lftln tpln widh heig],'EdgeColor','r');%宽度是widh,高度是heig,边框颜色是红色的
-     plot(with,heth, 'r+');%显示标定点 
+    % plot(with,heth, 'r+');%显示标定点 
      drawnow;
      hold off
  end

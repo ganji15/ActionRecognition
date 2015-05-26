@@ -1,6 +1,7 @@
  clear,clc;
  disp('---------start train-----------')
- disp('train......')
+ disp('training......')
+ %训练数据样本 ： 每种动作训练3个
  train_files = {  'D:/Database/run/daria_run.avi'...
                  'D:/Database/run/denis_run.avi'...
                  'D:/Database/run/eli_run.avi'...
@@ -15,9 +16,11 @@
                  'D:/Database/bend/eli_bend.avi'...
                  };
         
+% 设置hmm的初始状态转移矩阵以及混淆矩阵             
 trans = [1];
 emis = zeros(1, 11) + 1/11;
 
+% 对所有训练样本进行特征提取以及训练
 for i = 1 : length(train_files)
    video = read_avi_data(cell2mat(train_files(i)));
    x = tracking(video);
@@ -28,6 +31,9 @@ for i = 1 : length(train_files)
    end
 end
  
+% 将训练得到的四维矩阵保存
+% 四维矩阵结构如下
+% [视频号，特征号，hmm_x, hmm_y]
  save mat estE;
  
  disp('---------train over-----------')

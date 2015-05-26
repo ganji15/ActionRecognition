@@ -22,7 +22,7 @@ Oy=g1/g2;          %手背区域的质心
 Ox=g3/g4;
 
 if display
-    figure(2);imshow(I);
+    figure(2);%imshow(I);
 
     %%标记质心点
     hold on

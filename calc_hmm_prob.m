@@ -9,13 +9,4 @@ for i = 1 : nargin
     %disp(estE);
 end
 
-%{
-for i = 1 : nargin
-    m = length(varargin{i});
-    state_seq = zeros(1, m) + i;
-    [~, estE] = hmmestimate(varargin{i}, state_seq);
-    x(i, :) = estE;
-end
-%}
-
 end

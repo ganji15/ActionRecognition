@@ -2,7 +2,7 @@ function x = calc_prob( seq, action_emis)
 %UNTITLED1 Summary of this function goes here
 %  Detailed explanation goes here
 
-function prob = calc_prob2(seq2, emis )
+function prob = calc_prob2(seq2, emis )%根据混淆矩阵计算概率，由于概率值可能过小，取概率值的对数
 prob = 0;
 % number of emits
 [~,~,n] = size(emis);
@@ -25,6 +25,7 @@ end
 
 end;
 
+% 计算第r号动作第q个特征下出现表现序列的概率，将结果存入x（r,q）
 [r, p, ~] = size(action_emis);
 for m = 1 : r
     for q = 1 :p
